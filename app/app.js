@@ -1,7 +1,10 @@
 import express from "express";
-import { routes as guitarRoute } from "./guitars/index.js";
+import { routes as guitarRoute } from "./guitars/routes.js";
 
 const app = express();
+
+app.use(express.static('./public'));
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/guitars', guitarRoute);
 
