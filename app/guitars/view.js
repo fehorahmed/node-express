@@ -1,11 +1,22 @@
 const views ={
-    form(){
-        return this._layout( `<form action="/guitars" method="post">
+    form(guitar){
+
+        let action ='/guitars',
+        make = '',
+        model = '';     
+
+        if(guitar){
+            action = `/guitars/${guitar.id}`;
+            make = guitar.make;
+            model = guitar.model;
+        }
+
+        return this._layout( `<form action="${action}" method="post">
         <label for="guitar_make">Guitar Make:</label>
-        <input type="text" id="guitar_make" name="guitar_make" required>
+        <input type="text" id="guitar_make" name="guitar_make" value="${make}" required>
 
         <label for="guitar_model">Guitar Model:</label>
-        <input type="text" id="guitar_model" name="guitar_model" >
+        <input type="text" id="guitar_model" name="guitar_model" value="${model}">
 
         <input type="submit" value="Submit">
         </form>`);
