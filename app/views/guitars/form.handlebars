@@ -1,0 +1,17 @@
+{{#if guitar}}
+<form action="/guitars/{{guitar.id}}" method="post">
+    {{else}}
+    <form action="/guitars" method="post"></form>
+    {{/if}}
+    <div class="form-group">
+        <label for="guitar_make">Guitar Make:</label>
+        <input type="text" id="guitar_make" class="form-control" name="guitar_make" value="{{guitar.make}}" required>
+    </div>
+    <div class="form-group">
+        <label for="guitar_model">Guitar Model:</label>
+        <input type="text" id="guitar_model" class="form-control" name="guitar_model" value="{{guitar.model}}">
+    </div>
+
+
+    <input type="submit" class="btn btn-primary mt-2" value="Submit">
+</form>

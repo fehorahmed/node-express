@@ -1,3 +1,21 @@
+import mongoose, { model } from "mongoose";
+
+const guitarSchema = new mongoose.Schema({
+    make:String,
+    model:String,
+    make_lower:String
+});
+
+const Guitar = mongoose.model('Guitar',guitarSchema);
+
+// const guitar = new Guitar({
+//     make:"TanjGitar",
+//     model:"Tan Model",
+//     make_lower:"tanjgitar"
+// });
+
+// guitar.save();
+
 let id = 1;
 function getId() {
     return id++;
@@ -11,16 +29,20 @@ const guitars = [
 ];
 
 
-export function getAll() {
-    return Promise.resolve(guitars);
+export async function getAll() {
+
+    return await Guitar.find();
+    // return Promise.resolve(guitars);
 }
-export function getById(id) {
-    const guitar = guitars.find(g => g.id === id);
-    return Promise.resolve(guitar);
+export async function getById(id) {
+  
+    return await Guitar.findById(id)
+   
 }
-export function getByMake(id) {
-    const found = guitars.filter(g => g.make.toLowerCase() === id.toLowerCase());
-    return Promise.resolve(found);
+export async function getByMake(make) {
+
+    return await Guitar.find({make_lower:make.toLowerCase()});
+
 }
 export function addGuitar(make, model) {
     const guitar = {
